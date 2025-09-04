@@ -1,6 +1,5 @@
 ﻿using InterviewTest.Server.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Data.Sqlite;
 
 namespace InterviewTest.Server.Controllers
@@ -15,12 +14,13 @@ namespace InterviewTest.Server.Controllers
         //the database connection being created in each method.
         //2. There should NOT be database add/modify/delete code in controllers, it should be in the Data layer
         //3. Can consider using Entity Framework in the .NET project to handle the communication with database
-        //4. This controller name should be changed to something more accurate in a real world project - ie. EmployeesController
-        //The current ListController name is not an accurate name for the functionality of the controller.
+        //4. This controller name should be changed to something more accurate in a real world project - eg. EmployeesController
+        
         public ListController()
         {
         }
 
+        //Get list of employees
         [HttpGet]
         public List<Employee> Get()
         {
@@ -48,7 +48,7 @@ namespace InterviewTest.Server.Controllers
             return employees;
         }     
 
-
+        //get list employee based on employee name (ideally this would be an ID field not name)
         [HttpGet("{employeeName}")]
         public Employee Get(string employeeName)
         {
@@ -73,6 +73,7 @@ namespace InterviewTest.Server.Controllers
             return employee;
         }
 
+        //Modify employee values based on requirement to add numbers to existing employee values
         [HttpGet]
         [Route("ModifyEmployeeValues")]
         public List<Employee> ModifyEmployeeValues()
@@ -115,6 +116,7 @@ namespace InterviewTest.Server.Controllers
             return employees;
         }
 
+        //retrieve the sum of all values for all employees where employee name begins with A, B or C
         [HttpGet]
         [Route("SumOfValues")]
         public int SumOfValues()
@@ -136,7 +138,7 @@ namespace InterviewTest.Server.Controllers
             return sumOfValues;
         }
 
-
+        //add a new employee
         [HttpPost]
         public void Post(string name, string value)
         {
@@ -151,6 +153,7 @@ namespace InterviewTest.Server.Controllers
             }
         }
 
+        //update an existing employee
         [HttpPut]
         public void Put(string name, string value)
         {
@@ -166,6 +169,7 @@ namespace InterviewTest.Server.Controllers
             }
         }
 
+        //delete an employee from DB
         [HttpDelete]
         public void Delete(string name)
         {
@@ -180,8 +184,5 @@ namespace InterviewTest.Server.Controllers
             }
         }
 
-    /*
-     * List API methods goe here
-     * */
-}
+    }
 }
