@@ -23,31 +23,25 @@ function EmployeeList() {
     const [employees, setEmployees] = useState<EmployeeModel[]>([]);
 
     useEffect(() => {
-        fetch("api/list")
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                setEmployees(data);
-            })
+        LoadEmployeesList();
     }, []);
 
-    const RefreshEmployeesList = () => {
+    const LoadEmployeesList = () => {
         fetch("api/list")
             .then((response) => response.json())
             .then((data) => {
                 setEmployees(data);
             })
-    }
+    };
 
     const handleAddEmployee = async (props: Props) => {
-        //console.log(props);
         await addEmployee(props);
-        await RefreshEmployeesList();
+        await LoadEmployeesList();
     };
 
     const handleDeleteEmployee = async (name: string) => {
         await deleteEmployee(name);
-        await RefreshEmployeesList();
+        await LoadEmployeesList();
     };
 
     const handleEditEmployee = async (name: string) => {
@@ -59,26 +53,24 @@ function EmployeeList() {
 
     const handleUpdateEmployee = async (props: Props) => {
         await updateEmployee(props);
-        await RefreshEmployeesList();
+        await LoadEmployeesList();
         setIsUpdating(false);
     };
 
     const ModifyValuesinDb = async () => {
         const res: EmployeeModel[] = await modifyEmployeeValues();
-        //console.log(res);
         setEmployees(res);
     };
 
     const GetSumOfValues = async () => {
         const sumOfValues: number = await getSumOfValues();
-        console.log("Sum: " + sumOfValues);
         const t = sumOfValues >= minSumOfValues ?
             setSumValuesMessage("Sum of Values for Employees with names beginning with 'A,B,C is: " + sumOfValues) :
             setSumValuesMessage("Sum of values is less than " + minSumOfValues);              
     }
 
     return (
-        <div>       
+        <div className="container p-3 bg-dark text-white"> 
             <div className="h2 text-center p-2 text-primary">Employee Application</div>
             {isUpdating ? <EditEmployee employee={userForEdit}
                 updateEmployee={handleUpdateEmployee} /> :
@@ -107,7 +99,7 @@ function EmployeeList() {
                     <br />
                     <div className="text-warning">{sumValuesMessage}</div>
                 </div>
-            </div>
+           </div>           
        </div> 
   );
 }

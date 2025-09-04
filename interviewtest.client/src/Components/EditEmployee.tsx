@@ -1,8 +1,6 @@
 import EmployeeModel from "../Model/EmployeeModel";
 import { useState } from "react";
-interface Props {
-    employee: EmployeeModel
-}
+
 function EditEmployee(props) {
     const [newEmployeeName, setNewEmployeeName] = useState(props.employee.name);
     const [newEmployeeValue, setNewEmployeeValue] = useState(props.employee.value);
@@ -13,19 +11,13 @@ function EditEmployee(props) {
                     
         const name = newEmployeeName;
         const value = newEmployeeValue;
-
-        //create a new object of type EmployeeModel and assign name and value before passing it to EmployeeList
         const empModel: EmployeeModel = { name: name, value: parseInt(value) };
-
-        console.log(empModel);
 
         setNewEmployeeName("");
         setNewEmployeeValue("");
 
         return props.updateEmployee(empModel);
     }
-
-    //create useState values for name and value to send back to list page???/
 
     return (
         <div className="col-12 text-white p-1" style={{ borderRadius: "20px", border: "1px solid #555" }}>

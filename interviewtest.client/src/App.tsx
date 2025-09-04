@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import EmployeeApp from './App/EmployeeApp';
+import EmployeeList from './Components/EmployeeList';
 
 function App() {
     const [employeeCount, setEmployeeCount] = useState<number>(0);
@@ -10,7 +10,7 @@ function App() {
 
     return (<>
         <div>Connectivity check: {employeeCount > 0 ? `OK (${employeeCount})` : `NOT READY`}</div>
-        <div><EmployeeApp/></div>
+        <div><EmployeeList /></div>
     </>);
 
     async function checkConnectivity() {
