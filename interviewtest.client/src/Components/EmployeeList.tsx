@@ -3,12 +3,9 @@ import EmployeeModel from "../Model/EmployeeModel";
 import Employee from "./Employee";
 import AddEmployee from "./AddEmployee";
 import EditEmployee from "./EditEmployee";
-import { addEmployee } from "../API/EmployeeAddApi";
-import { deleteEmployee } from "../API/EmployeeDeleteApi";
-import { editEmployee } from "../API/EmployeeEditApi";
-import { updateEmployee } from "../API/EmployeeUpdateApi";
-import { modifyEmployeeValues } from "../API/ModifyEmployeeValuesApi";
-import { getSumOfValues } from "../API/SumOfValuesApi";
+import { addEmployee, editEmployee, updateEmployee, deleteEmployee } from "../Api/EmployeeApi";
+import { modifyEmployeeValues } from "../Api/ModifyEmployeeValuesApi";
+import { getSumOfValues } from "../Api/SumOfValuesApi";
 
 function EmployeeList() {
 
