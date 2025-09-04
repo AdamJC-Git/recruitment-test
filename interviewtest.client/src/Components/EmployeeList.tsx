@@ -9,8 +9,6 @@ import { editEmployee } from "../API/EmployeeEditApi";
 import { updateEmployee } from "../API/EmployeeUpdateApi";
 import { modifyEmployeeValues } from "../API/ModifyEmployeeValuesApi";
 import { getSumOfValues } from "../API/SumOfValuesApi";
-//import { getEmployees } from "../API/EmployeeApi";
-
 
 function EmployeeList() {
 
@@ -19,7 +17,6 @@ function EmployeeList() {
     };
 
     const minSumOfValues: number = 11171;
-    //const [sumValues, setSumValues] = useState<number>(0);
     const [sumValuesMessage, setSumValuesMessage] = useState<string>("");
     const [isUpdating, setIsUpdating] = useState<boolean>(false);
     const [userForEdit, setUserForEdit] = useState<EmployeeModel>();
@@ -38,15 +35,9 @@ function EmployeeList() {
         fetch("api/list")
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 setEmployees(data);
             })
     }
-
-    //const GetEmployeesList = async () => {
-    //    const userFromApi = await getEmployees();
-    //    console.log(userFromApi);
-    //}
 
     const handleAddEmployee = async (props: Props) => {
         //console.log(props);
@@ -74,23 +65,16 @@ function EmployeeList() {
 
     const ModifyValuesinDb = async () => {
         const res: EmployeeModel[] = await modifyEmployeeValues();
-        console.log(res);
+        //console.log(res);
         setEmployees(res);
-        //await RefreshEmployeesList();
     };
 
     const GetSumOfValues = async () => {
         const sumOfValues: number = await getSumOfValues();
         console.log("Sum: " + sumOfValues);
-        //const result: number = parseInt(sumOfValues);
-        //setSumValues(111);
-        //console.log("Sum1: " + sumOfValues);
-        //console.log(sumValues)
         const t = sumOfValues >= minSumOfValues ?
             setSumValuesMessage("Sum of Values for Employees with names beginning with 'A,B,C is: " + sumOfValues) :
-            setSumValuesMessage("Sum of values is less than " + minSumOfValues);
-       
-        
+            setSumValuesMessage("Sum of values is less than " + minSumOfValues);              
     }
 
     return (
@@ -99,11 +83,6 @@ function EmployeeList() {
             {isUpdating ? <EditEmployee employee={userForEdit}
                 updateEmployee={handleUpdateEmployee} /> :
                 <AddEmployee handleAddEmployee={handleAddEmployee} />}
-
-            {/*<div>*/}
-            {/*    <button className="btn btn-success form-control"*/}
-            {/*    onClick={() => GetEmployeesList()}>Get Employees List</button>*/}
-            {/*</div>           */}
 
             <br />
            <div className="row">
