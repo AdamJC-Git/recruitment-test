@@ -15,7 +15,7 @@ namespace InterviewTest.Server.Controllers
         //2. There should NOT be database add/modify/delete code in controllers, it should be in the Data layer
         //3. Can consider using Entity Framework in the .NET project to handle the communication with database
         //4. This controller name should be changed to something more accurate in a real world project - eg. EmployeesController
-        
+        //5. Error handling and validation has not been added in this project which it would be in LIVE project
         public ListController()
         {
         }
