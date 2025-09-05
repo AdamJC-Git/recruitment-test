@@ -32,7 +32,7 @@ namespace InterviewTest.Server.Controllers
                 connection.Open();
 
                 var queryCmd = connection.CreateCommand();
-                queryCmd.CommandText = @"SELECT Name, Value FROM Employees";
+                queryCmd.CommandText = @"SELECT Name, Value FROM Employees ORDER BY Name";
                 using (var reader = queryCmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -100,7 +100,7 @@ namespace InterviewTest.Server.Controllers
                 queryCmd3.ExecuteNonQuery();
 
                 var queryCmd = connection.CreateCommand();
-                queryCmd.CommandText = @"SELECT Name, Value FROM Employees";
+                queryCmd.CommandText = @"SELECT Name, Value FROM Employees ORDER BY Name";
                 using (var reader = queryCmd.ExecuteReader())
                 {
                     while (reader.Read())
